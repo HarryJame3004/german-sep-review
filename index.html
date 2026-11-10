@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Probetest – Zwischenklausur A1.2 | VGU German 2</title>
+<style>
+  :root { --blue:#0b5394; --dark:#17365d; --ok:#1e7d32; --bg:#f2f5f9; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: "Segoe UI", Arial, sans-serif; background:var(--bg); color:#222; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 24px 16px 48px; }
+  header { background: var(--dark); color:#fff; border-radius: 12px; padding: 28px 24px; }
+  header h1 { margin: 0 0 6px; font-size: 1.6rem; }
+  header p { margin: 2px 0; opacity: .92; }
+  .card { background:#fff; border-radius: 12px; padding: 20px 22px; margin-top: 18px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+  .card h2 { margin-top: 0; font-size: 1.15rem; color: var(--dark); }
+  table { width:100%; border-collapse: collapse; }
+  td, th { padding: 7px 8px; border-bottom: 1px solid #e3e8ee; text-align:left; }
+  th { color: var(--dark); }
+  .buttons { display:flex; gap: 14px; flex-wrap: wrap; margin-top: 8px; }
+  a.btn { flex: 1 1 240px; text-align:center; text-decoration:none; font-size:1.15rem; font-weight:600;
+          padding: 16px 12px; border-radius: 10px; color:#fff; }
+  a.download { background: var(--blue); }
+  a.run { background: var(--ok); }
+  a.btn small { display:block; font-weight:400; font-size:.82rem; opacity:.9; margin-top:4px; }
+  code { background:#eef2f7; padding: 1px 6px; border-radius: 5px; }
+  .note { font-size: .92rem; color:#444; }
+  ol li { margin: 6px 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Probetest – Zwischenklausur A1.2</h1>
+    <p>German 2 (GER2_MC1) · Vietnamese-German University</p>
+    <p>Übungstest im Format der echten Zwischenklausur – mit Safe Exam Browser (SEB)</p>
+  </header>
+
+  <div class="card">
+    <h2>So funktioniert der Probetest</h2>
+    <p>Do the Probetest to check that everything works. In the real exam, the test can only be opened by the SEB browser. This means that the screen will be locked and you need the password to open or exit the test.</p>
+    <p>If you cannot open the Probetest in SEB, contact your teacher immediately. Do not wait until the exam day!</p>
+    <p>Please complete the Probetest at least once before the real Digital Exam to ensure your laptop works properly.</p>
+    <p><strong>Password to start the test: 123456</strong><br>
+    <strong>Password to quit the test: 123456</strong></p>
+    <ol>
+      <li>Installieren Sie <strong>Safe Exam Browser</strong> (Windows 3.10 oder macOS 3.6), falls noch nicht geschehen.</li>
+      <li>Klicken Sie auf <strong>Download</strong> und laden Sie die Datei <code>thi-thu.seb</code> herunter.</li>
+      <li>Öffnen Sie die Datei <code>thi-thu.seb</code> – SEB startet automatisch diesen Probetest (oder klicken Sie auf <strong>Run</strong>, um ohne SEB im normalen Browser zu üben).</li>
+      <li>Zum Beenden von SEB: Passwort <code>123456</code> eingeben.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Die zwei Buttons</h2>
+    <div class="buttons">
+      <a class="btn download" href="thi-thu.seb" download>⬇ Download
+        <small>SEB-Konfiguration herunterladen (thi-thu.seb)</small></a>
+      <a class="btn run" href="exam.html">▶ Run
+        <small>Probetest direkt starten (exam.html)</small></a>
+    </div>
+    <p class="note">Tipp: Mit der .seb-Datei üben Sie wie in der echten Prüfung – der Bildschirm ist gesperrt, bis Sie das Passwort eingeben.</p>
+  </div>
+
+  <div class="card">
+    <h2>Format der Zwischenklausur A1.2 (insgesamt 50 Minuten, 50 Punkte)</h2>
+    <table>
+      <tr><th>Prüfungsteil</th><th>Inhalt</th><th>Punkte</th></tr>
+      <tr><td>1. Chunks-Test</td><td>Aussagen / Mini-Dialoge, Multiple-Choice (a, b, c, d)</td><td>20</td></tr>
+      <tr><td>2. Hören</td><td>Kurzdialoge (Multiple-Choice a, b, c) + Ansagen/Durchsagen (Richtig–Falsch)</td><td>10</td></tr>
+      <tr><td>3. Lesen</td><td>E-Mails (Richtig–Falsch) + Anzeigen (a oder b)</td><td>10</td></tr>
+      <tr><td>4. Schreiben</td><td>Kurze informelle Mitteilung / E-Mail schreiben</td><td>10</td></tr>
+    </table>
+    <p class="note">Inhalt: Prüfungstraining Zwischenklausur A1.2 (Hören Teil 1 &amp; 2, Lesen, Schreiben) und Chunks aus den Einheitstests 9–12 (Das Leben A1).</p>
+  </div>
+</div>
+</body>
+</html>

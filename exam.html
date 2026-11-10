@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Probetest – Zwischenklausur A1.2</title>
+<style>
+  :root { --dark:#17365d; --blue:#0b5394; --ok:#1e7d32; --bad:#b71c1c; --bg:#f2f5f9; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:"Segoe UI", Arial, sans-serif; background:var(--bg); color:#222; }
+  .topbar { position: sticky; top:0; z-index:10; background:var(--dark); color:#fff; padding:10px 16px;
+            display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+  .topbar .title { font-weight:700; }
+  #timer { font-size:1.25rem; font-variant-numeric: tabular-nums; background:#0d2138; padding:4px 12px; border-radius:8px; }
+  #timer.warn { background:var(--bad); }
+  .topbar button { margin-left:auto; background:var(--ok); color:#fff; border:0; border-radius:8px;
+                   padding:10px 18px; font-size:1rem; font-weight:600; cursor:pointer; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 18px 14px 60px; }
+  section { background:#fff; border-radius:12px; padding:20px 22px; margin-top:18px; box-shadow:0 1px 4px rgba(0,0,0,.08); }
+  h2 { color:var(--dark); margin:0 0 4px; font-size:1.25rem; }
+  h3 { color:var(--dark); margin:18px 0 6px; font-size:1.05rem; }
+  .instr { color:#555; margin: 2px 0 12px; }
+  .q { padding: 12px 0; border-bottom: 1px solid #edf1f5; }
+  .q:last-child { border-bottom: 0; }
+  .q p { margin: 0 0 8px; }
+  .opts label { display:block; padding:7px 10px; border:1px solid #d8dee6; border-radius:8px; margin:5px 0; cursor:pointer; }
+  .opts label:hover { background:#f4f8fc; }
+  .opts input { margin-right:8px; }
+  .opts label.correct { border-color: var(--ok); background:#e8f5e9; }
+  .opts label.wrong { border-color: var(--bad); background:#fdecea; }
+  .text-box { background:#f7f9fb; border:1px solid #e0e6ee; border-radius:10px; padding:14px 16px; white-space:pre-line; }
+  .ad-grid { display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin:8px 0; }
+  @media (max-width:640px){ .ad-grid{ grid-template-columns:1fr; } }
+  .ad { border:1.5px solid #9db2c8; border-radius:8px; padding:10px 12px; background:#fdfdf8; white-space:pre-line; }
+  .ad b.head { display:block; margin-bottom:4px; }
+  audio { width:100%; margin: 6px 0 10px; }
+  textarea { width:100%; min-height:170px; font: inherit; padding:10px; border:1px solid #c6d0dc; border-radius:8px; }
+  #result { display:none; }
+  #result .score { font-size:1.3rem; font-weight:700; color:var(--dark); }
+  .sample { display:none; margin-top:12px; }
+  .badge { display:inline-block; background:#e8eef5; color:var(--dark); border-radius:20px; padding:2px 10px; font-size:.8rem; margin-left:8px; }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="title">Zwischenklausur A1.2 – Probetest</span>
+  <span id="timer">50:00</span>
+  <span>German 2 · GER2_MC1</span>
+  <button id="submitTop" type="button">Abgeben (Nộp bài)</button>
+</div>
+
+<div class="wrap">
+
+<section id="chunks">
+  <h2>1. Chunks-Test <span class="badge">20 Punkte</span></h2>
+  <p class="instr">Welches Wort passt? Kreuzen Sie an: a, b, c oder d. (Chunks aus Einheit 9–12, Das Leben A1)</p>
+  <div id="chunksQs"></div>
+</section>
+
+<section id="hoeren">
+  <h2>2. Hören <span class="badge">10 Punkte</span></h2>
+  <h3>Teil 1: Kreuzen Sie an: a, b oder c. Sie hören jeden Text zweimal.</h3>
+  <audio controls preload="metadata" src="audio/teil1.mp3"></audio>
+  <div id="hoeren1Qs"></div>
+  <h3>Teil 2: Kreuzen Sie die richtige Lösung an: Richtig oder Falsch. Sie hören jeden Text zweimal.</h3>
+  <audio controls preload="metadata" src="audio/teil2.mp3"></audio>
+  <div id="hoeren2Qs"></div>
+</section>
+
+<section id="lesen">
+  <h2>3. Lesen <span class="badge">10 Punkte</span></h2>
+  <h3>Teil 1: Lesen Sie und kreuzen Sie an: Richtig oder Falsch.</h3>
+  <div class="text-box">Hallo Sanne,
+danke für Deine Mail. Leider können wir uns am Sonntag nicht treffen! Ich fahre nach Frankfurt. Meine Mutter hat Geburtstag, da gibt es ein großes Familientreffen: Meine Schwester kommt aus Amerika, meine Brüder sind auch da.
+Ich fahre am Montagmorgen zurück. Vielleicht können wir in der nächsten Woche einmal zusammen essen? Rufst Du mich an?
+Tschüss, Michael</div>
+  <div id="lesen1aQs"></div>
+  <div class="text-box" style="margin-top:14px;">Rostock, 7. April
+Liebe Angelika,
+wie gefällt es Dir in Leipzig? Hast Du viele Freunde? Ich möchte Dich im nächsten Monat besuchen, wie findest Du das? Kann ich bei Dir wohnen – ich bleibe nur drei oder vier Tage! Du gehst am Morgen in die Universität und ich besichtige die Museen. Ich war noch nie in Leipzig!
+Am Abend kann ich etwas kochen oder wir holen uns eine Pizza. Wir können dann zusammen ins Theater und in die Diskothek gehen. Das ist ein wunderbares Programm, oder?
+Bitte, antworte mir sofort!
+Liebe Grüße von Anke</div>
+  <div id="lesen1bQs"></div>
+  <h3>Teil 2: Lesen Sie und kreuzen Sie an: a oder b.</h3>
+  <div id="lesen2Qs"></div>
+</section>
+
+<section id="schreiben">
+  <h2>4. Schreiben <span class="badge">10 Punkte</span></h2>
+  <p class="instr">Ihr Freund <strong>Christian Schmitz</strong> will Sie nächste Woche besuchen. Schreiben Sie:</p>
+  <ul>
+    <li>Sie können Ihren Freund nicht vom Bahnhof abholen.</li>
+    <li>Wie kommt Ihr Freund zu Ihrer Wohnung?</li>
+    <li>Ihre Frau (Freundin) ist zu Hause.</li>
+  </ul>
+  <p class="instr">Schreiben Sie zu jedem Punkt ein bis zwei Sätze. (Phần này tự đối chiếu với bài mẫu sau khi nộp bài.)</p>
+  <textarea id="writing" placeholder="Lieber Christian, ..."></textarea>
+  <p class="instr"><span id="wordCount">0</span> Wörter</p>
+  <div class="sample" id="sampleBox">
+    <h3>Musterlösung (Bài mẫu)</h3>
+    <div class="text-box">Lieber Christian,
+ich freue mich auf deinen Besuch nächste Woche! Leider kann ich dich nicht vom Bahnhof abholen, ich muss arbeiten.
+Du kannst mit dem Bus Nummer 12 bis zur Haltestelle „Marktplatz“ fahren. Von dort sind es nur fünf Minuten zu Fuß zu meiner Wohnung.
+Meine Frau ist zu Hause und macht dir die Tür auf.
+Bis bald und viele Grüße
+Khôi</div>
+  </div>
+</section>
+
+<section id="result">
+  <h2>Ergebnis (Kết quả)</h2>
+  <p class="score" id="scoreLine"></p>
+  <p id="scoreDetail"></p>
+  <p>Schreiben (10 Punkte): Vergleichen Sie Ihren Text mit der Musterlösung – alle drei Punkte müssen vorkommen. Các đáp án đúng được tô xanh, câu sai tô đỏ kèm đáp án đúng.</p>
+  <button type="button" onclick="location.reload()" style="background:var(--blue);color:#fff;border:0;border-radius:8px;padding:10px 18px;font-weight:600;cursor:pointer;">Nochmal üben (Làm lại)</button>
+</section>
+
+</div>
+
+<script>
+const CHUNKS = [
+ {q:"Jannis und Anna wohnen zusammen in Bonn. Ihre Wohnung hat zwei ____, eine Küche und ein Badezimmer.", o:["Zimmer","Balkone","Sofas","Regale"], a:0},
+ {q:"Sie haben keinen Garten, aber einen ____.", o:["Schreibtisch","Balkon","Nachbarn","Teppich"], a:1},
+ {q:"Es gibt im Wohnzimmer ein ____, zwei Sessel und ein Regal mit vielen Büchern.", o:["Sofa","Bett","Herd","Auto"], a:0},
+ {q:"Welches Wort passt NICHT in die Küche?", o:["der Kühlschrank","der Herd","die Leselampe","die Spüle"], a:2},
+ {q:"Welches Wort passt NICHT ins Wohnzimmer?", o:["das Sofa","der Fernseher","der Garten","der Teppich"], a:2},
+ {q:"Das Bild hängt ____ der Wand.", o:["an","unter","zwischen","im"], a:0},
+ {q:"Die Bücher stehen ____ Regal.", o:["an","vor","im","zwischen"], a:2},
+ {q:"die Großmutter + ____ = die Großeltern", o:["der Großvater","der Onkel","der Vater","der Bruder"], a:0},
+ {q:"die Schwester + ____ = die Geschwister", o:["die Mutter","der Bruder","die Tante","der Cousin"], a:1},
+ {q:"„Ich war zehn Jahre verheiratet, aber jetzt leben mein Mann und ich nicht mehr zusammen. Seit 2019 sind wir ____.“", o:["ledig","getrennt","verheiratet","verlobt"], a:1},
+ {q:"Berat Koca hat in einem Restaurant in Düsseldorf ____.", o:["gearbeitet","gemietet","gelernt","gekauft"], a:0},
+ {q:"2019 hat er ein Café in Köln ____.", o:["geheiratet","gekauft","gemietet","gelernt"], a:1},
+ {q:"Levan ist verheiratet. ____ Töchter sind 2 und 5 Jahre alt.", o:["Ihre","Seine","Unsere","Meine"], a:1},
+ {q:"Der Altenpfleger ____ Seniorinnen und Senioren.", o:["untersucht","repariert","betreut","verkauft"], a:2},
+ {q:"Die Mechatronikerin ____ einen Motor.", o:["plant","repariert","installiert","betreut"], a:1},
+ {q:"Eine Ärztin arbeitet ____.", o:["auf einer Baustelle","in einer Praxis","in einer Werkstatt","in einem Seniorenheim"], a:1},
+ {q:"Stavros hat viel ____ und E-Mails geschrieben.", o:["telefoniert","beraten","verkauft","angeschaut"], a:0},
+ {q:"____ Schokolade isst du am liebsten?", o:["Welchen","Welches","Welche","Welcher"], a:2},
+ {q:"Du ____ zum Arzt gehen, du bist krank!", o:["musst","kannst","muss","können"], a:0},
+ {q:"Zum Frühstück esse ich Brot mit ____.", o:["Paprika","Marmelade","Spaghetti","Käse"], a:1}
+];
+const HOEREN1 = [
+ {q:"1. Wie viel kosten die Schuhe?", o:["98,00 €","98,50 €","89,50 €"], a:1},
+ {q:"2. Wie kommt die Frau zum Bahnhof?", o:["Mit dem Bus","Mit dem Taxi","Zu Fuß"], a:0},
+ {q:"3. Wann kommt Frau Dr. Beile?", o:["Um 10.00 Uhr","Um 11.00 Uhr","Um 10.30 Uhr"], a:2},
+ {q:"4. Wo wohnt Herr Paulsen?", o:["In der Wielandstraße","An der Ecke Wielandstraße / Ifflandstraße","In der Ifflandstraße"], a:2},
+ {q:"5. Wann geht die Frau ins Museum?", o:["Am Dienstagnachmittag","Am Mittwochnachmittag","Am Freitagnachmittag"], a:2},
+ {q:"6. Wie fährt die Frau nach Koblenz?", o:["Mit dem Zug","Mit dem Bus","Mit dem Schiff"], a:0}
+];
+const HOEREN2 = [
+ {q:"7. Die Fahrgäste haben 30 Minuten Zeit.", a:0},
+ {q:"8. Die Fahrgäste sollen rechts aussteigen.", a:1},
+ {q:"9. Heute ist Kinderkleidung billig.", a:0},
+ {q:"10. Die Mutter soll ihren Sohn abholen.", a:1}
+];
+const LESEN1A = [
+ {q:"1. Michael trifft am Wochenende seine Geschwister.", a:0},
+ {q:"2. Michael will Sanne in der nächsten Woche anrufen.", a:1}
+];
+const LESEN1B = [
+ {q:"3. Anke möchte im Mai nach Leipzig fahren.", a:0},
+ {q:"4. Sie will in Leipzig studieren.", a:1},
+ {q:"5. Anke kennt die Stadt schon ein bisschen.", a:1}
+];
+const LESEN2 = [
+ {q:"6. Sie möchten wissen: Wo scheint heute in Deutschland die Sonne?",
+  A:"www.sonnenwelt.de\nSonnenparadiese in Deutschland:\n> Solarium\n> Wellness\n> Fitness",
+  B:"www.wid.de\nDas Wetter in Deutschland:\n> Norddeutschland\n> Süddeutschland\n> Temperaturen", a:1},
+ {q:"7. Sie wollen im Internet deutsche Bücher kaufen.",
+  A:"www.buecherboerse.com\n60 Buchläden in Deutschland!\n> Aktuelle Informationen\n> Café und Leseräume\n> Adressen",
+  B:"www.buecherbund.de\n60000 Titel online bestellen\n> Belletristik\n> Sachbücher\n> Bildbände", a:1},
+ {q:"8. Sie suchen ein kleines Apartment in Hamburg.",
+  A:"www.immobilien.20.de\n> Haus kaufen\n> Haus mieten\n> Wohnung kaufen\n> Wohnung mieten\n> Angebot der Woche",
+  B:"www.schoenerwohnen.de\n> Wohnen im Hamburger Hafen\n> Wie lebt man auf 40 qm?\n> Wohnen wie im Süden\n> Pflanzen für die Dachterrasse", a:0},
+ {q:"9. Sie suchen ein günstiges Restaurant für die Geburtstagsparty Ihrer Tochter.",
+  A:"Schiffer's Gasthof am See\nGute bürgerliche Küche im Gartenrestaurant\nBesonders zu empfehlen: Frischer Seefisch!\nKinder-Spielplatz neben dem Haus\nFür Gruppen bitte reservieren! Tel: 089 77 345",
+  B:"Mac Duffel macht's möglich!\nAm Montag- und Donnerstagnachmittag ist bei uns Platz für die Kleinen.\nPommes frites und Luftballons, Würstchen und Clowns\nMelden Sie sich an! Für große Gruppen (ab 25) besonderer Preisnachlass!\nTel: 089 645388 – www.macduf.com", a:1},
+ {q:"10. Sie suchen ein Hotel in Erfurt. Sie wollen am Abend im Hotel essen.",
+  A:"www.hotel.meiring.de\n*** Hotel Meiring\nFreundliches Familienhotel am Stadtpark, alle Zimmer mit Bad und TV.\nKein Verkehrslärm, bei uns können Sie wirklich ausruhen! Schöner Frühstücksraum.\n€ 60,00 pro Person (incl. Frühstück)",
+  B:"www.jollyhotel.erfurt.de\n**** Jolly Hotel Erfurt: mitten in der Stadt!\n> Foyer\n> Konferenzsäle\n> Wellness-Bereich\n> Frühstücksraum\n> Restaurants im Haus\n> Preise", a:1}
+];
+const RF = ["Richtig","Falsch"];
+const LETTERS = ["a","b","c","d"];
+
+function renderMC(containerId, items, name, labels) {
+  const box = document.getElementById(containerId);
+  items.forEach((it, i) => {
+    const div = document.createElement("div"); div.className = "q";
+    let opts = "";
+    (labels || it.o).forEach((lab, j) => {
+      const txt = it.o ? it.o[j] : lab;
+      opts += `<label><input type="radio" name="${name}${i}" value="${j}">${labels ? "<b>"+LETTERS[j]+"</b> " : ""}${txt}</label>`;
+    });
+    div.innerHTML = `<p>${it.q}</p><div class="opts">${opts}</div>`;
+    box.appendChild(div);
+  });
+}
+function renderRF(containerId, items, name) {
+  const box = document.getElementById(containerId);
+  items.forEach((it, i) => {
+    const div = document.createElement("div"); div.className = "q";
+    div.innerHTML = `<p>${it.q}</p><div class="opts">
+      <label><input type="radio" name="${name}${i}" value="0">Richtig</label>
+      <label><input type="radio" name="${name}${i}" value="1">Falsch</label></div>`;
+    box.appendChild(div);
+  });
+}
+function renderLesen2() {
+  const box = document.getElementById("lesen2Qs");
+  LESEN2.forEach((it, i) => {
+    const div = document.createElement("div"); div.className = "q";
+    div.innerHTML = `<p>${it.q}</p>
+      <div class="ad-grid"><div class="ad"><b class="head">A</b>${it.A}</div><div class="ad"><b class="head">B</b>${it.B}</div></div>
+      <div class="opts">
+        <label><input type="radio" name="l2${i}" value="0"><b>a</b></label>
+        <label><input type="radio" name="l2${i}" value="1"><b>b</b></label></div>`;
+    box.appendChild(div);
+  });
+}
+renderMC("chunksQs", CHUNKS, "ch", true);
+renderMC("hoeren1Qs", HOEREN1, "h1", true);
+renderRF("hoeren2Qs", HOEREN2, "h2");
+renderRF("lesen1aQs", LESEN1A, "l1a");
+renderRF("lesen1bQs", LESEN1B, "l1b");
+renderLesen2();
+
+document.getElementById("writing").addEventListener("input", e => {
+  const t = e.target.value.trim();
+  document.getElementById("wordCount").textContent = t ? t.split(/\s+/).length : 0;
+});
+
+let submitted = false;
+function grade(name, items) {
+  let score = 0;
+  items.forEach((it, i) => {
+    const sel = document.querySelector(`input[name="${name}${i}"]:checked`);
+    const labels = document.querySelectorAll(`input[name="${name}${i}"]`);
+    labels.forEach(inp => {
+      const lab = inp.closest("label");
+      inp.disabled = true;
+      if (parseInt(inp.value) === it.a) lab.classList.add("correct");
+      else if (sel && inp === sel) lab.classList.add("wrong");
+    });
+    if (sel && parseInt(sel.value) === it.a) score++;
+  });
+  return score;
+}
+function submitExam(auto) {
+  if (submitted) return; submitted = true;
+  const sChunks = grade("ch", CHUNKS);
+  const sH1 = grade("h1", HOEREN1);
+  const sH2 = grade("h2", HOEREN2);
+  const sL1a = grade("l1a", LESEN1A);
+  const sL1b = grade("l1b", LESEN1B);
+  const sL2 = grade("l2", LESEN2);
+  const hoeren = sH1 + sH2, lesen = sL1a + sL1b + sL2;
+  const total = sChunks + hoeren + lesen;
+  document.getElementById("scoreLine").textContent =
+    `Gesamt: ${total} / 40 Punkte (ohne Schreiben) ${auto ? "– Zeit um! (Hết giờ, bài đã tự nộp)" : ""}`;
+  document.getElementById("scoreDetail").textContent =
+    `Chunks-Test: ${sChunks}/20 · Hören: ${hoeren}/10 · Lesen: ${lesen}/10 · Schreiben: selbst mit der Musterlösung vergleichen (max. 10).`;
+  document.getElementById("sampleBox").style.display = "block";
+  const r = document.getElementById("result"); r.style.display = "block";
+  r.scrollIntoView({behavior:"smooth"});
+  clearInterval(tick);
+}
+document.getElementById("submitTop").addEventListener("click", () => submitExam(false));
+
+let remain = 50 * 60;
+const timerEl = document.getElementById("timer");
+const tick = setInterval(() => {
+  remain--;
+  const m = String(Math.floor(remain / 60)).padStart(2, "0");
+  const s = String(remain % 60).padStart(2, "0");
+  timerEl.textContent = `${m}:${s}`;
+  if (remain <= 300) timerEl.classList.add("warn");
+  if (remain <= 0) submitExam(true);
+}, 1000);
+</script>
+</body>
+</html>
